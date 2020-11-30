@@ -5,25 +5,21 @@ import XCTest
 final class MauriNetTests: XCTestCase {
     func testChainedRequests() {
         // Given
-        let mockChain1 = buildChainableRequests()
-        let mockChain2 = buildChainableRequests()
+        let mockChain1: AnyPublisher<[DummyDecodable], Error> = RequestsMother.buildRequests()
+        let mockChain2: AnyPublisher<DummyDecodable, Error> = RequestsMother.buildRequests()
 
         // When
-        mockChain1.compactMap { $0.f
+        let firstMatch = mockChain1.compactMap { $0.first }
+        let joined = firstMatch.flatMap {
+            mockChain2.append($0)
         }
-        mockChain2.flatMap {
-            mockChain1.
-        }
+        // TODO: find a way how to fix the chaining.
+//        let token = joined.sink(receiveCompletion: { _ in },
+//                                receiveValue: { print($0) })
+
+        // Then
     }
 }
 
 private extension MauriNetTests {
-    func buildChainableRequests() -> AnyPublisher<DummyDecodable, Error> {
-        let dummyRequest = URLRequest(url: URL(string: "lala")!)
-        let mockChain = SessionMother.assembleChainableSession()
-
-        return mockChain.run(dummyRequest)
-            .map(\.value)
-            .eraseToAnyPublisher()
-    }
 }
