@@ -7,18 +7,10 @@
 
 import Combine
 import Foundation
+@testable import MauriNet
 
 struct RequestsMother {
-    func buildRequestWithSingleResponse() -> AnyPublisher<DummyDecodable, Error> {
-        let dummyRequest = URLRequest(url: URL(string: "lala")!)
-        let mockChain = SessionMother.assembleChainableSession()
-
-        return mockChain.run(dummyRequest)
-            .compactMap { $0 as? DummyDecodable }
-            .eraseToAnyPublisher()
-    }
-
-    func buildRequests<T: Decodable>() -> AnyPublisher<T, Error> {
+    static func buildRequests<T: Decodable>() -> AnyPublisher<T, Error> {
         let dummyRequest = URLRequest(url: URL(string: "lala")!)
         let mockChain = SessionMother.assembleChainableSession()
 
