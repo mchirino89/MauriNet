@@ -2,7 +2,7 @@ import Combine
 import XCTest
 @testable import MauriNet
 
-final class MauriNetTests: XCTestCase {
+final class MauriNetChainableTestCases: XCTestCase {
     func testChainedRequests() {
         // Given
         let mockChain1: AnyPublisher<[DummyDecodable], Error> = RequestsMother.buildRequests()
