@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 /// Response object resulting from network request
-public struct Response<T> {
+struct Response<T> {
     /// Generic value type from request's response
     let value: T
 
@@ -19,12 +19,12 @@ public struct Response<T> {
 
 /// Promise-based agent for network requests executions.
 /// [Source](https://www.vadimbulavin.com/modern-networking-in-swift-5-with-urlsession-combine-framework-and-codable/)
-public struct Agent {
+struct Agent {
     private let urlSession: URLSession
 
     /// Initializes an agent for a `URLSession`
     /// - Parameter urlSession: session where agent will live. Defaults to `.shared`
-    public init(urlSession: URLSession = .shared) {
+    init(urlSession: URLSession = .shared) {
         self.urlSession = urlSession
     }
 
@@ -46,7 +46,7 @@ public struct Agent {
     ///   - request: request to be performed by the agent
     ///   - decoder: type of decoding for request. Defaults to `JSONDecoder` instance
     /// - Returns: chainable response `AnyPublisher` object
-    public func run<T: Decodable>(_ request: URLRequest,
+    func run<T: Decodable>(_ request: URLRequest,
                                   _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response<T>, Error> {
         urlSession
             .dataTaskPublisher(for: request)
