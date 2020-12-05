@@ -59,3 +59,6 @@ public struct Agent {
             .eraseToAnyPublisher()
     }
 }
+
+// Add a more general agent that only returns data and that doesn't assume Main thread handling by default.
+// Check here https://heckj.github.io/swiftui-notes/

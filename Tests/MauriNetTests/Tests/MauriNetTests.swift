@@ -20,6 +20,3 @@ final class MauriNetTests: XCTestCase {
         // Then
     }
 }
-
-private extension MauriNetTests {
-}
