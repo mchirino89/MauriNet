@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Constans.swift
 //  
 //
 //  Created by Mauricio Chirino on 05/12/20.
@@ -7,7 +7,9 @@
 
 import Foundation
 
-public enum URLError: Error {
+public typealias URLBuilderResult = Result<URLRequest, URLBuilderError>
+
+public enum URLBuilderError: Error {
     case poorAssembling
 }
 

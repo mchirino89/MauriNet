@@ -8,7 +8,7 @@
 import Foundation
 
 public struct APIEndpoint {
-    private let host: String
+    let host: String
     let httpMethod: HTTPMethod
     let scheme: APIScheme
     let timeout: TimeInterval
@@ -40,7 +40,7 @@ public struct APIEndpoint {
     /// - Parameter path: path (with or without query parameters) to append to the existing host
     /// - Returns: The assembled URL.
     ///
-    public func buildRequest(for path: String) -> Result<URLRequest, URLError> {
+    public func buildRequest(for path: String) -> URLBuilderResult {
         let assembledURL = scheme.value + host + "/\(path)"
         let components = URLComponents(validURL: assembledURL)
 

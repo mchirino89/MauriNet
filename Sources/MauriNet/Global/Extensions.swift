@@ -8,12 +8,18 @@
 import Foundation
 
 public extension URL {
+    /// Assumes the provided string contains a valid URL. Recommended usage with static assembled URLs;
+    /// for dynamic generated ones use failable init to avoid runtime crashes.
+    /// - Parameter validURL: A valid URL according to [RFC 1738](https://tools.ietf.org/html/rfc1738)
     init(validURL: String) {
         self.init(string: validURL)!
     }
 }
 
 public extension URLComponents {
+    /// Assumes the provided string contains a valid URL. Recommended usage with static assembled URLs;
+    /// for dynamic generated ones use failable init to avoid runtime crashes.
+    /// - Parameter validURL: A valid URL according to [RFC 1738](https://tools.ietf.org/html/rfc1738)
     init(validURL: String) {
         self.init(string: validURL)!
     }
