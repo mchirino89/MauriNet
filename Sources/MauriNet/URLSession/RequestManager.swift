@@ -10,25 +10,21 @@ import Foundation
 public typealias NetworkResult = (Result<Data, NetworkError>) -> Void
 public typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
 
-extension URLSession: URLSessionProtocol {
+extension URLSession: URLSessionable {
     public func dataTaskWithURL(_ request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTask {
         dataTask(with: request.url!, completionHandler: completion)
     }
 }
 
-public protocol URLSessionProtocol {
+public protocol URLSessionable {
     func dataTaskWithURL(_ request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTask
 }
 
-public protocol Networkable {
-    func request(_ request: URLRequest, completion: @escaping NetworkResult)
-}
-
-public struct RequestManager: Networkable {
+public struct RequestManager {
     private let httpResponseCodeSuccessRange = (200..<300)
-    let session: URLSessionProtocol
+    let session: URLSessionable
 
-    public init(session: URLSessionProtocol = URLSession.shared) {
+    public init(session: URLSessionable = URLSession.shared) {
         self.session = session
     }
 

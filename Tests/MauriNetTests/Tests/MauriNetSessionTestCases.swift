@@ -11,7 +11,7 @@ import XCTest
 final class MauriNetSessionTestCases: XCTestCase {
     var mockRequestManager: RequestManager!
     var dummyURLRequest: URLRequest!
-    var mockSession: URLSessionProtocol!
+    var mockSession: URLSessionable!
 
     override func tearDown() {
         super.tearDown()

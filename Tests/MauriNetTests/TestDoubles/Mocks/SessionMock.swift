@@ -8,9 +8,9 @@
 import Foundation
 @testable import MauriNet
 
-/// URL session for partial mocking implementation during testing.
-/// [Source](https://www.swiftbysundell.com/articles/mocking-in-swift/)
-struct URLFailingSessionMock: URLSessionProtocol {
+/// URL session mocking implementation during testing.
+/// [Source](https://masilotti.com/testing-nsurlsession-input/)
+struct URLFailingSessionMock: URLSessionable {
     func dataTaskWithURL(_ request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTask {
         return URLSessionDataTaskMock {
             completion(nil, nil, nil)
@@ -18,7 +18,7 @@ struct URLFailingSessionMock: URLSessionProtocol {
     }
 }
 
-struct URLSuccessSessionMock: URLSessionProtocol {
+struct URLSuccessSessionMock: URLSessionable {
     func dataTaskWithURL(_ request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTask {
         return URLSessionDataTaskMock {
             let dummyData = "dummyData".data(using: .utf8)!
