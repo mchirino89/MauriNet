@@ -2,7 +2,7 @@
 import XCTest
 @testable import MauriNet
 
-final class MauriNetURLTestCases: XCTestCase {
+final class MauriNetURLBuilderTestCases: XCTestCase {
     var root: String!
     var path: String!
     var endpoint: APIEndpoint!
@@ -35,7 +35,7 @@ final class MauriNetURLTestCases: XCTestCase {
     }
 }
 
-private extension MauriNetURLTestCases {
+private extension MauriNetURLBuilderTestCases {
     func givenDummyURL() {
         root = "github.com"
         path = "testing"
