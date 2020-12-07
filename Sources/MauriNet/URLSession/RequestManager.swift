@@ -7,20 +7,7 @@
 
 import Foundation
 
-public typealias NetworkResult = (Result<Data, NetworkError>) -> Void
-public typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
-
-extension URLSession: URLSessionable {
-    public func dataTaskWithURL(_ request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTask {
-        dataTask(with: request.url!, completionHandler: completion)
-    }
-}
-
-public protocol URLSessionable {
-    func dataTaskWithURL(_ request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTask
-}
-
-public struct RequestManager {
+public struct RequestManager: RequestableManager {
     private let httpResponseCodeSuccessRange = (200..<300)
     let session: URLSessionable
 
