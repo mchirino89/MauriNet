@@ -71,15 +71,17 @@ private extension MauriNetURLBuilderTestCases {
     }
 
     func thenVerifyQueryParamsAreProperlyBuilt() throws {
-        let path = "testing?param=1&param2=lalala"
+        let path = "testing"
+        let query: [String: String] = ["param": "1", "param2": "lalala"]
 
-        switch endpoint.buildRequest(for: path) {
+        switch endpoint.buildRequest(for: path, with: query) {
         case .success(let assembledURL):
             let resultingURL = try XCTUnwrap(assembledURL.url?.absoluteString)
             let urlWithComponents = URLComponents(validURL: resultingURL)
 
             XCTAssertNotNil(assembledURL.url?.query)
             XCTAssertEqual(urlWithComponents.queryItems?.count, 2)
+            XCTAssertEqual(urlWithComponents.queryItems?["param"], "1")
             XCTAssertEqual(urlWithComponents.queryItems?["param2"], "lalala")
         case .failure(let error):
             XCTFail("Failed due to \(error.localizedDescription)")
