@@ -15,7 +15,7 @@ public struct APIEndpoint {
 
     /// Creates an `APIEndpoint` with the set of given values
     /// - Parameters:
-    ///   - host: root URL. I.e. _github.com_, _developer.apple.com_ and so forth
+    ///   - host: root URL. I.e. _github.com_, _developer.apple.com_ and so forth. Ending slash (`/`) is not required; in case a path is provided it'll be automatically added for those cases.
     ///   - httpMethod: type of HTTP method this endpoint will handle. Defaults to `.get` type
     ///   - scheme: whether or not this is a safe connection. Defaults to `.safe` type (https)
     ///   - timeout: timeout before the request expires. Defaults to `10` seconds
@@ -38,11 +38,16 @@ public struct APIEndpoint {
     ///      // returns -> https://github.com/events
     ///
     /// - Parameter path: path (with or without query parameters) to append to the existing host
+    /// - Parameter queryDictionary: param query in the form of a dictionary to be assembled into the resulting URLRequest. Defaults to an empty one
     /// - Returns: The assembled URL.
     ///
-    public func buildRequest(for path: String) -> URLBuilderResult {
+    public func buildRequest(for path: String, with queryDictionary: [String: String] = [:]) -> URLBuilderResult {
         let assembledURL = scheme.value + host + "/\(path)"
-        let components = URLComponents(validURL: assembledURL)
+        var components = URLComponents(validURL: assembledURL)
+
+        if !queryDictionary.isEmpty {
+            components.queryItems = buildQuery(basedOn: queryDictionary)
+        }
 
         if let builtURL = components.url {
             var request = URLRequest(url: builtURL, timeoutInterval: timeout)
@@ -51,6 +56,12 @@ public struct APIEndpoint {
             return .success(request)
         } else {
             return .failure(.poorAssembling)
+        }
+    }
+
+    private func buildQuery(basedOn dictionary: [String: String]) -> [URLQueryItem] {
+        return dictionary.reduce([URLQueryItem]()) { assembled, item in
+            assembled + [URLQueryItem(name: item.key, value: item.value)]
         }
     }
 }
