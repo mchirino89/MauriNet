@@ -46,6 +46,7 @@ struct Agent {
     ///   - request: request to be performed by the agent
     ///   - decoder: type of decoding for request. Defaults to `JSONDecoder` instance
     /// - Returns: chainable response `AnyPublisher` object
+    @available(iOS 13.0, *)
     func run<T: Decodable>(_ request: URLRequest,
                                   _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response<T>, Error> {
         urlSession
