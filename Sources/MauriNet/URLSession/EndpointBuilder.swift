@@ -7,20 +7,21 @@
 
 import Foundation
 
-/// Endpoint builder handler
+/// Convenience endpoint builder handler
 public struct EndpointBuilder {
     private let endpointSetup: APIEndpoint
 
     /// Instantiate the builder for the provided setup
-    /// - Parameter endpointSetup: root endpoint setup from where all builder setup will bootstrap 
+    /// - Parameter endpointSetup: root endpoint setup from where all builder setup will bootstrap
     public init(endpointSetup: APIEndpoint) {
         self.endpointSetup = endpointSetup
     }
 
     /// Assembles an URL for the current host
+    /// - Parameters:
     ///   - path: path for the desired endpoint
     ///   - queryParameters: URL's query parameters, should they exist. Defaults to an empty dictionary (no parameters)
-    /// - Returns: valid URL
+    /// - Returns: valid URL (defaults to [google.com](google.com) in case of error in assembly)
     public func assembleRequest(path: String, queryParameters: [String: String] = [:]) -> URLRequest {
         switch endpointSetup.buildRequest(for: path, with: queryParameters) {
         case .success(let assembledRequest):
