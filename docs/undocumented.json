@@ -1,0 +1,26 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/mauriciochirino/Projects/MauriToolBox/MauriNet/Sources/MauriNet/Global/NetworkError.swift",
+      "line": 89,
+      "symbol": "NetworkError.localizedDescription",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauriciochirino/Projects/MauriToolBox/MauriNet/Sources/MauriNet/URLSession/RequestableManager.swift",
+      "line": 17,
+      "symbol": "URLSession.dataTaskWithURL(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mauriciochirino/Projects/MauriToolBox/MauriNet/Sources/MauriNet/URLSession/RequestableManager.swift",
+      "line": 24,
+      "symbol": "URLSessionable.dataTaskWithURL(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/mauriciochirino/Projects/MauriToolBox/MauriNet"
+}

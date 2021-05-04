@@ -7,11 +7,19 @@
 
 import Foundation
 
+/// Helper object that centralize all required parameters for an endpoint
 public struct APIEndpoint {
-    let host: String
-    let httpMethod: HTTPMethod
-    let scheme: APIScheme
-    let timeout: TimeInterval
+    /// root URL. I.e. _github.com_, _developer.apple.com_ and so forth. Ending slash (`/`) is not required; in case a path is provided it'll be automatically added for those cases.
+    public let host: String
+
+    /// HTTP method for this endpoint
+    public let httpMethod: HTTPMethod
+
+    /// endpoint http scheme that defines what kind of connection is
+    public let scheme: APIScheme
+
+    /// timeout before the request expires
+    public let timeout: TimeInterval
 
     /// Creates an `APIEndpoint` with the set of given values
     /// - Parameters:

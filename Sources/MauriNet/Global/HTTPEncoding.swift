@@ -7,8 +7,14 @@
 
 import Foundation
 
-public enum HTTPEncoding {
+/// Types of HTTP supported encoding 
+enum HTTPEncoding {
+    /// url type (i.e. used in `GET` requests)
     case url
+
+    /// JSON type
     case json
+
+    /// body type
     case body
 }
