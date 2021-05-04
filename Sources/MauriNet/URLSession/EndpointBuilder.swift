@@ -18,6 +18,19 @@ public struct EndpointBuilder {
     }
 
     /// Assembles an URL for the current host
+    ///
+    /// Example of usage:
+    ///
+    ///      let githubEndpoint = APIEndpoint(host: "github.com")
+    ///      let endpointBuilder = EndpointBuilder(endpointSetup: githubEndpoint)
+    ///      endpointBuilder.assembleRequest(path: "events") { result in
+    ///          switch(result) in
+    ///          case success(let assembledRequest):
+    ///          // do whatever you wish with URLRequest resulting type
+    ///          case failure(let errorType):
+    ///          // defaults to an URLRequest for google.com
+    ///      }
+    ///
     /// - Parameters:
     ///   - path: path for the desired endpoint
     ///   - queryParameters: URL's query parameters, should they exist. Defaults to an empty dictionary (no parameters)

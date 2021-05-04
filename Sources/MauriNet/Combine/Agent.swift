@@ -18,7 +18,7 @@ struct Response<T> {
 }
 
 /// Promise-based agent for network requests executions.
-/// [Source](https://www.vadimbulavin.com/modern-networking-in-swift-5-with-urlsession-combine-framework-and-codable/)
+/// [Inspiration post](https://www.vadimbulavin.com/modern-networking-in-swift-5-with-urlsession-combine-framework-and-codable/)
 struct Agent {
     private let urlSession: URLSession
 
